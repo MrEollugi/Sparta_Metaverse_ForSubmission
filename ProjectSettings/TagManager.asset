@@ -11,6 +11,8 @@ TagManager:
   - Ground
   - Ceiling
   - Obstacle
+  - HighScoreText
+  - CurrentScoreText
   layers:
   - Default
   - TransparentFX

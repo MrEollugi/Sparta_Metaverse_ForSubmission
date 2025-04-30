@@ -57,6 +57,13 @@ public class FlappyBirdController : MonoBehaviour
     public void ResetState()
     {
         _isAlive = true;
-        _rb.velocity = Vector2.zero;
+        //_rb.velocity = Vector2.zero;
+
+        BaseController baseController = GetComponent<BaseController>();
+        if(baseController != null )
+        {
+            baseController.SetLookDirection(Vector2.right);
+        }
+
     }
 }

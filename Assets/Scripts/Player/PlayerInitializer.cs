@@ -15,7 +15,7 @@ public class PlayerInitializer : MonoBehaviour
     [SerializeField] private float mainGravity = 0f;
 
     [Header("시작 위치")]
-    [SerializeField] private Vector3 flappyStartPos = new Vector3(-6f, 0f, 0f);
+    [SerializeField] private Vector3 flappyStartPos = new Vector3(4f, 0f, 0f);
     [SerializeField] private Vector3 mainStartPos = new Vector3(0f, 0f, 0f);
 
     private void Awake()
@@ -59,6 +59,7 @@ public class PlayerInitializer : MonoBehaviour
                 flappy.ResetState();
 
                 transform.position = flappyStartPos;
+
                 break;
             case GameModeType.Main:
                 _rb.gravityScale = mainGravity;

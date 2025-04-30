@@ -96,4 +96,10 @@ public class BaseController : MonoBehaviour
         _knockbackTimeRemaining = duration;
     }
 
+    public void SetLookDirection(Vector2 direction)
+    {
+        _lookDirection = direction.normalized;
+        RotateTowards(_lookDirection);
+    }
+
 }

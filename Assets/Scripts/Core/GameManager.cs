@@ -11,7 +11,12 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI highScoreText;
+    [SerializeField] private TextMeshProUGUI currentScoreText;
+
     [SerializeField] private GameObject gameOverPanel;
+
+
 
     private int _score = 0;
     private bool _isGameOver = false;
@@ -48,6 +53,9 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         scoreText = GameObject.FindWithTag("ScoreText")?.GetComponent<TextMeshProUGUI>();
+        highScoreText = GameObject.FindWithTag("HighScoreText")?.GetComponent<TextMeshProUGUI>();
+        currentScoreText = GameObject.FindWithTag("CurrentScoreText")?.GetComponent<TextMeshProUGUI>();
+
         gameOverPanel = GameObject.FindWithTag("GameOverPanel");
         Time.timeScale = 1f;
         _score = 0;
@@ -55,6 +63,8 @@ public class GameManager : MonoBehaviour
         {
             gameOverPanel.SetActive(false);
         }
+
+        UpdateHighScoreUI();
     }
 
     public void AddScore(int value)
@@ -76,7 +86,6 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         _isGameOver = true;
-
         Time.timeScale = 0f;
 
         if (gameOverPanel != null)
@@ -84,6 +93,8 @@ public class GameManager : MonoBehaviour
             gameOverPanel.SetActive(true);
         }
         SaveHighScore();
+        UpdateHighScoreUI();
+        UpdateCurrentScoreUI();
     }
 
     public void Retry()
@@ -117,4 +128,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void UpdateHighScoreUI()
+    {
+        GameObject highScoreObj = GameObject.FindWithTag("HighScoreText");
+        if(highScoreObj != null)
+        {
+            TextMeshProUGUI highScoreText = highScoreObj.GetComponent<TextMeshProUGUI>();
+            int high = PlayerPrefs.GetInt("HighScore", 0);
+            highScoreText.text = $"High Score: {high}";
+        }
+    }
+
+    private void UpdateCurrentScoreUI()
+    {
+        if(currentScoreText != null)
+        {
+            currentScoreText.text = $"Score: {_score}";
+        }
+    }
+    
 }
