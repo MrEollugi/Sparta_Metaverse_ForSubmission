@@ -68,7 +68,7 @@ public class PlayerInitializer : MonoBehaviour
                 transform.position = mainStartPos;
                 break;
         }
-        Debug.Log($"[Init] Mode: {GameMode.Current}, FlappyBirdController: {GetComponent<FlappyBirdController>().enabled}");
+        //Debug.Log($"[Init] Mode: {GameMode.Current}, FlappyBirdController: {GetComponent<FlappyBirdController>().enabled}");
 
     }
 }
